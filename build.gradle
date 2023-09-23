@@ -1,5 +1,6 @@
 plugins {
     id 'fabric-loom' version '1.2-SNAPSHOT'
+    id 'com.modrinth.minotaur' version '2.+'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
@@ -75,6 +76,7 @@ shadowJar {
         exclude(dependency('io.netty:netty-transport'))
         exclude(dependency('io.netty:netty-transport-native-unix-common'))
     }
+    mergeServiceFiles()
 }
 
 remapJar {
@@ -114,13 +116,12 @@ publishing {
 
     // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
-        maven {
-            name = 'GitHubPackages'
-            url = 'https://maven.pkg.github.com/newlevelvr/fabric-grpc-api'
-            credentials {
-                username = System.getenv('GITHUB_ACTOR')
-                password = System.getenv('GITHUB_TOKEN')
-            }
-        }
     }
+}
+
+modrinth {
+    token = System.getenv('MODRINTH_TOKEN')
+    projectId = 'fabric-grpc-api'
+    versionNumber = project.version
+    uploadFile = remapJar
 }
