@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "grpc-api",
+  "version": "${version}",
+  "name": "grpc-api",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/newlevelvr/fabric-grpc-api"
+  },
+  "license": "Apache-2.0",
+  "environment": "*",
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
