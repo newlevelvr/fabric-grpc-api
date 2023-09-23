@@ -29,6 +29,7 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+    shade(implementation('io.grpc:grpc-netty:1.58.0'))
     shade(implementation('io.grpc:grpc-protobuf:1.58.0'))
     shade(implementation('io.grpc:grpc-stub:1.58.0'))
 
@@ -65,6 +66,14 @@ shadowJar {
     dependencies {
         exclude(dependency('com.google.guava:guava'))
         exclude(dependency('com.google.guava:failureaccess'))
+        exclude(dependency('com.google.code.gson:gson'))
+        exclude(dependency('io.netty:netty-buffer'))
+        exclude(dependency('io.netty:netty-codec'))
+        exclude(dependency('io.netty:netty-common'))
+        exclude(dependency('io.netty:netty-handler'))
+        exclude(dependency('io.netty:netty-resolver'))
+        exclude(dependency('io.netty:netty-transport'))
+        exclude(dependency('io.netty:netty-transport-native-unix-common'))
     }
 }
 
